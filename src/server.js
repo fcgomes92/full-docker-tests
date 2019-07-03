@@ -10,6 +10,6 @@ app.get("/", (req, res) => {
   return res.status(200).json({ msg: "ok" });
 });
 
-app.listen({ port: process.env.PORT })
+if (process.env.NODE_ENV !== "testing") app.listen({ port: process.env.PORT });
 
 export default app;

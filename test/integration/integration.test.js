@@ -8,10 +8,9 @@ describe("Sanity test", () => {
   it("should get ok from root endpoint", done => {
     request(app)
       .get("/")
-      .end(res => {
-        expect(res).to.exist;
+      .end((err, res) => {
         expect(res.status).to.equal(200);
-        done();
       });
+      done();
   });
 });
