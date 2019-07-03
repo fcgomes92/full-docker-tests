@@ -25,6 +25,8 @@ services:
     volumes:
       - database_volume:/var/lib/postgresql/data
     restart: always
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_DB: cats_project
       POSTGRES_PASSWORD: postgres

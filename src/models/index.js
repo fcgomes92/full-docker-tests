@@ -1,10 +1,11 @@
 import { readdirSync } from 'fs';
 import { basename as _basename, join } from 'path';
 import Sequelize from 'sequelize';
+import configFile from '../config/config';
 
 const basename = _basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = configFile[env];
 const db = {};
 
 let sequelize;
@@ -26,9 +27,11 @@ readdirSync(__dirname)
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
+  } else {
+    db[modelName] = new db[modelName](sequelize);
   }
+  db[modelName].sync();
 });
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

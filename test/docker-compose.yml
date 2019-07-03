@@ -22,6 +22,8 @@ services:
   database-test:
     container_name: full-docker-tests-datbase-test
     image: postgres:11
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_DB: cats_project
       POSTGRES_PASSWORD: postgres
