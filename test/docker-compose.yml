@@ -1,0 +1,24 @@
+version: "3"
+services:
+  app-test:
+    container_name: full-docker-tests-test
+    image: node:10
+    build: ../Dockerfile.test
+    environment:
+      PORT: 3000
+      NODE_ENV: testing
+    depends_on:
+      - database-test
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    volumes:
+      - ../:/home/app
+    command: yarn && yarn test:unit
+
+  database-test:
+    container_name: full-docker-tests-datbase-test
+    image: postgres:11
+    environment:
+      POSTGRES_DB: cats_project
+      POSTGRES_PASSWORD: postgres

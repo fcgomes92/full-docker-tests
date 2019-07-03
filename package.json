@@ -1,0 +1,33 @@
+{
+  "name": "full-docker-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "fcgomes.92",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "babel ./src --compact -d ./dist",
+    "start": "nodemon --exec babel-node ./src/server.js",
+    "start:prod": "node dist/index.js",
+    "test": "yarn test:integration && yarn test:unit",
+    "test:unit": "mocha --compilers js:@babel/register --recursive -c"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "sequelize": "^5.9.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/node": "^7.4.5",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
+  }
+}

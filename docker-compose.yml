@@ -1,0 +1,31 @@
+version: "3"
+services:
+  app:
+    image: node:10-alpine
+    container_name: full-docker-tests
+    build: .
+    environment:
+      PORT: 3000
+      NODE_ENV: development
+    depends_on:
+      - database
+    volumes:
+      - ./:/home/app
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    command: yarn start
+
+  database:
+    image: postgres:11.2-alpine
+    container_name: full-docker-tests-datbase
+    volumes:
+      - database_volume:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_DB: cats_project
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  database_volume:
+    
