@@ -10,14 +10,14 @@
     "start": "nodemon --exec babel-node ./src/server.js",
     "start:prod": "node dist/index.js",
     "test": "yarn test:integration && yarn test:unit",
-    "test:unit": "mocha --require @babel/register --recursive -c"
+    "test:unit": "mocha --require @babel/register --recursive -c",
+    "test:coverage": "istanbul cover _mocha —- -R spec"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "sequelize": "^5.9.2",
-    "superagent": "^5.1.0"
+    "sequelize": "^5.9.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -27,7 +27,9 @@
     "@babel/register": "^7.4.4",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "istanbul": "^0.4.5",
     "mocha": "^6.1.4",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   }
 }
