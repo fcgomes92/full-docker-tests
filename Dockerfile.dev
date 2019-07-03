@@ -8,7 +8,7 @@ ENV NODE_VALUE=production
 COPY package.json yarn.lock ./
 COPY . .
 
-RUN yarn  --frozen-lockfile --no-cache ---force --production
-RUN yarn build --production
+RUN yarn --no-cache ---force
+RUN yarn build
 
 CMD ["yarn", "run", "start:prod"]

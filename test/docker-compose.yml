@@ -3,7 +3,9 @@ services:
   app-test:
     container_name: full-docker-tests-test
     image: node:10
-    build: ../Dockerfile.test
+    build:
+      context: ../
+      dockerfile: Dockerfile.test
     environment:
       PORT: 3000
       NODE_ENV: testing
@@ -13,8 +15,9 @@ services:
       - "3000:3000"
       - "9229:9229"
     volumes:
-      - ../:/home/app
-    command: yarn && yarn test:unit
+      - ../:/home/app:rw
+      - /home/app/node_modules
+    command: yarn test:unit
 
   database-test:
     container_name: full-docker-tests-datbase-test
